@@ -2238,6 +2238,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465768135}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1495553750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5729161468754129749, guid: 7d88d6ffce774b54bb9dcf9f1137706c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5729161467950872767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1495553754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495553750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466e59393255a144c97fd3df7fbaef82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 3171294603023295847}
+  playerCam: {fileID: 807979169357638184}
+  dashForce: 20
+  dashUpwardForce: 0
+  maxDashYSpeed: 15
+  dashDuration: 0.25
+  dashDelay: 0.025
+  cc: {fileID: 2127777577}
+  dashFov: 95
+  useCameraForward: 0
+  allowAllDirections: 1
+  disableGravity: 1
+  resetVel: 1
+  dashCooldown: 1
+  dashKey: 304
 --- !u!1 &1617375847
 GameObject:
   m_ObjectHideFlags: 0
@@ -3014,6 +3047,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109435787}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2127777577 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8886763748240386317, guid: 27a81aa75aebc4c4ebb950ff130e638c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8886763748592946530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cebabdfe3f7a33e4db825191e7846e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &807979169357638184 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4950747668095373975, guid: 7d88d6ffce774b54bb9dcf9f1137706c,
@@ -3033,6 +3078,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5729161468754129743, guid: 7d88d6ffce774b54bb9dcf9f1137706c,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729161468754129743, guid: 7d88d6ffce774b54bb9dcf9f1137706c,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729161468754129743, guid: 7d88d6ffce774b54bb9dcf9f1137706c,
+        type: 3}
+      propertyPath: groundDrag
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729161468754129743, guid: 7d88d6ffce774b54bb9dcf9f1137706c,
+        type: 3}
+      propertyPath: dashSpeedChangeFactor
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5729161468754129744, guid: 7d88d6ffce774b54bb9dcf9f1137706c,
         type: 3}
       propertyPath: m_RootOrder
@@ -3107,6 +3172,11 @@ PrefabInstance:
       propertyPath: orientation
       value: 
       objectReference: {fileID: 3171294603023295847}
+    - target: {fileID: 8886763748240386320, guid: 27a81aa75aebc4c4ebb950ff130e638c,
+        type: 3}
+      propertyPath: field of view
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 8886763749028082308, guid: 27a81aa75aebc4c4ebb950ff130e638c,
         type: 3}
       propertyPath: cameraPosition

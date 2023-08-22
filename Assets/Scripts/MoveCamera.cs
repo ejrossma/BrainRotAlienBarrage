@@ -6,7 +6,7 @@ public class MoveCamera : MonoBehaviour
 {
     [SerializeField] Transform cameraPosition;
 
-    private void Update()
+    void Update()
     {
         transform.position = cameraPosition.position;
     }

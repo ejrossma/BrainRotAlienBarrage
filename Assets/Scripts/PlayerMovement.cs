@@ -5,7 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float moveSpeed;
+    private float moveSpeed;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashSpeedChangeFactor;
+
+    public float maxYSpeed;
+
     [SerializeField] float groundDrag;
 
     [SerializeField] float jumpForce;
@@ -15,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Keybinds")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
-    [SerializeField] KeyCode dashKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     [SerializeField] float playerHeight;
@@ -39,11 +44,14 @@ public class PlayerMovement : MonoBehaviour
     public enum MovementState
     {
         walking,
+        dashing,
         air
     }
 
+    public bool dashing;
+
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -51,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
         GroundCheck();
         GatherInput();
@@ -67,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     private void GroundCheck()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, groundLayers);
-        if (grounded)
+        if (state == MovementState.walking)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
@@ -101,20 +109,79 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private float desiredMoveSpeed;
+    private float lastDesiredMoveSpeed;
+    private MovementState lastState;
+    private bool keepMomentum;
+
     private void StateHandler()
     {
-        if (grounded)
+        if (dashing)
+        {
+            state = MovementState.dashing;
+            desiredMoveSpeed = dashSpeed;
+            speedChangeFactor = dashSpeedChangeFactor;
+        }
+        else if (grounded)
         {
             state = MovementState.walking;
+            desiredMoveSpeed = walkSpeed;
         }   
         else
         {
             state = MovementState.air;
+            desiredMoveSpeed = walkSpeed;
         }
+
+        bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
+        if (lastState == MovementState.dashing) keepMomentum = true;
+
+        if (desiredMoveSpeedHasChanged)
+        {
+            if (keepMomentum)
+            {
+                StopAllCoroutines();
+                StartCoroutine(SmoothlyLerpMoveSpeed());
+            }
+            else
+            {
+                StopAllCoroutines();
+                moveSpeed = desiredMoveSpeed;
+            }
+        }
+
+        lastDesiredMoveSpeed = desiredMoveSpeed;
+        lastState = state;
+    }
+
+    private float speedChangeFactor;
+    private IEnumerator SmoothlyLerpMoveSpeed()
+    {
+        //smoothly lerp movementSpeed to desired value
+        float time = 0;
+        float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed);
+        float startValue = moveSpeed;
+
+        float boostFactor = speedChangeFactor;
+
+        while (time < difference) 
+        {
+            moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+
+            time += Time.deltaTime * boostFactor;
+
+            yield return null;
+        }
+
+        moveSpeed = desiredMoveSpeed;
+        speedChangeFactor = 1f;
+        keepMomentum = false;
     }
 
     private void MovePlayer()
     {
+        if (state == MovementState.dashing) return;
+
         //calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
@@ -154,6 +221,10 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector3(limitVel.x, rb.velocity.y, limitVel.z);
             }
         }
+
+        //limit y velocity
+        if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
+            rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
     }
 
     private void Jump()
