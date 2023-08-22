@@ -97,7 +97,7 @@ public class Dashing : MonoBehaviour
         pm.dashing = false;
         pm.maxYSpeed = 0;
 
-        cc.DoFov(80f);
+        cc.DoFov(85f);
 
         if (disableGravity)
             rb.useGravity = true;
