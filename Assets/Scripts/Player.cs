@@ -8,8 +8,10 @@ public class Player : MonoBehaviour
     [SerializeField] float maxHealth;
     [SerializeField] float health;
 
-    [Header("Gun References")]
+    [Header("Player Information")]
+    [SerializeField] GameObject currentGun;
 
+    [Header("Gun References")]
     [SerializeField] GameObject assaultObj;
     [SerializeField] GameObject shotgunObj;
 
