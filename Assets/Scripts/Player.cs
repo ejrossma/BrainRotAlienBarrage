@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,9 +13,10 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject currentGun;
     [SerializeField] KeyCode swapGunKey = KeyCode.Q;
 
-    [Header("Gun References")]
+    [Header("References")]
     [SerializeField] GameObject assaultObj;
     [SerializeField] GameObject shotgunObj;
+    [SerializeField] TextMeshProUGUI healthText;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,6 +26,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthText.SetText("Health: " + health);
+
         if (Input.GetKeyDown(swapGunKey))
         {
             //check which gun is current
@@ -55,7 +59,7 @@ public class Player : MonoBehaviour
 
         if (sizeOfPickup == Pickup.size.small)
         {
-            gs.AddAmmo(1 * ammoMult);
+            gs.AddAmmo(2 * ammoMult);
         }
         else if (sizeOfPickup == Pickup.size.medium)
         {
@@ -90,5 +94,12 @@ public class Player : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health < 0)
+            Debug.Log("You have died");
     }
 }

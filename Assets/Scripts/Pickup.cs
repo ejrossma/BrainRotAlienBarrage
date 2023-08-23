@@ -32,6 +32,15 @@ public class Pickup : MonoBehaviour
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 
+    public void SetRandomSize()
+    {
+        float val = Random.Range(0f, 1f);
+        if (val > 0.33f)
+            sizeOfPickup = size.small;
+        else
+            sizeOfPickup = size.medium;
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.CompareTag("Player"))
