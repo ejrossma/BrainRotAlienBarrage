@@ -55,15 +55,15 @@ public class Player : MonoBehaviour
 
         if (sizeOfPickup == Pickup.size.small)
         {
-            currentGun.GetComponent<GunSystem>().AddAmmo(1 * ammoMult);
+            gs.AddAmmo(1 * ammoMult);
         }
         else if (sizeOfPickup == Pickup.size.medium)
         {
-            currentGun.GetComponent<GunSystem>().AddAmmo(3 * ammoMult);
+            gs.AddAmmo(3 * ammoMult);
         }
         else if (sizeOfPickup == Pickup.size.full)
         {
-            currentGun.GetComponent<GunSystem>().AddAmmo(20 * ammoMult);
+            gs.AddAmmo(20 * ammoMult);
         }
 
         return true;

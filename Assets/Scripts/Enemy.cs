@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy Stats")]
     [SerializeField] float maxHealth;
-    [SerializeField] float health;
+
+    [Header("Enemy Information")]
+    private float health;
+
+    private void Awake()
+    {
+        health = maxHealth;
+    }
 
     public void TakeDamage(float damage)
     {
@@ -14,6 +22,7 @@ public class Enemy : MonoBehaviour
         {
             health = 0;
             Debug.Log("Enemy Died");
+            Destroy(gameObject);
         }  
     }
 }

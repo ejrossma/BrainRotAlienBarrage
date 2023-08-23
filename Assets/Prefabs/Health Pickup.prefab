@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 761993652812367973}
   - component: {fileID: 761993652812367961}
+  - component: {fileID: 8390136556355274678}
   m_Layer: 0
   m_Name: Health Pickup
   m_TagString: Untagged
@@ -49,6 +50,20 @@ MonoBehaviour:
   typeOfPickup: 0
   bobSpeed: 1
   bobHeight: 0.15
+--- !u!136 &8390136556355274678
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761993652812367962}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3155210792141633390
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +75,6 @@ GameObject:
   - component: {fileID: 1259796083649491780}
   - component: {fileID: 8422011189381871889}
   - component: {fileID: 7098236857156436181}
-  - component: {fileID: 6772530858554379806}
   m_Layer: 0
   m_Name: Pickup Object
   m_TagString: Untagged
@@ -134,20 +148,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6772530858554379806
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3155210792141633390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3629926796455136527
 PrefabInstance:
   m_ObjectHideFlags: 0

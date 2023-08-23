@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 761993652812367973}
   - component: {fileID: 761993652812367961}
+  - component: {fileID: 7149951573993663993}
   m_Layer: 0
   m_Name: Ammo Pickup
   m_TagString: Untagged
@@ -45,11 +46,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98d2c66cc27fe44c912529dd234a8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupObjectTransform: {fileID: 2178246001957618287}
   sizeOfPickup: 0
   typeOfPickup: 0
   bobSpeed: 1
   bobHeight: 0.15
+--- !u!136 &7149951573993663993
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761993652812367962}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6027569545227503197
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +75,6 @@ GameObject:
   - component: {fileID: 2178246001957618287}
   - component: {fileID: 3089761329437873536}
   - component: {fileID: 6289157874961695622}
-  - component: {fileID: 8665441327407987230}
   m_Layer: 0
   m_Name: Pickup Object
   m_TagString: Untagged
@@ -137,20 +150,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8665441327407987230
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6027569545227503197}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &761993652224452476
 PrefabInstance:
   m_ObjectHideFlags: 0
