@@ -16,7 +16,7 @@ public class DashCooldownUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float updatedProgressValue = 1- dash.GetDashCooldown() / dash.dashCooldown;
+        float updatedProgressValue = 1 - dash.GetDashCooldown() / dash.dashCooldown;
         progressBar.localScale = new Vector3(updatedProgressValue, 1, 1);
     }
 }

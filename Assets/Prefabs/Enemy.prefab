@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8912992499494983814}
   m_Layer: 7
-  m_Name: rightLaunchSpot
+  m_Name: frontLaunch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4585663829573761157}
   m_Layer: 7
-  m_Name: backLaunchSpot
+  m_Name: leftLaunch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1139305101801738483}
   m_Layer: 7
-  m_Name: frontLaunchSpot
+  m_Name: rightLaunch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,10 +212,10 @@ MonoBehaviour:
     type: 3}
   ammoPickup: {fileID: 761993652812367962, guid: c4951694b17a4684cb8d2a97254c805b,
     type: 3}
-  frontProjectileLaunchSpot: {fileID: 1139305101801738483}
-  backProjectileLaunchSpot: {fileID: 4585663829573761157}
-  leftProjectileLaunchSpot: {fileID: 4885130119946322838}
-  rightProjectileLaunchSpot: {fileID: 8912992499494983814}
+  frontProjectileLaunchSpot: {fileID: 8912992499494983814}
+  backProjectileLaunchSpot: {fileID: 4885130119946322838}
+  leftProjectileLaunchSpot: {fileID: 4585663829573761157}
+  rightProjectileLaunchSpot: {fileID: 1139305101801738483}
   maxHealth: 100
   shotCooldown: 5
 --- !u!1 &8092257218787910536
@@ -228,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4885130119946322838}
   m_Layer: 7
-  m_Name: leftLaunchSpot
+  m_Name: backLaunch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

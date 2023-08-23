@@ -11,8 +11,16 @@ public class Projectile : MonoBehaviour
 
     [Header("Movement")]
     private Vector3 moveDir;
+    private bool parried;
 
-    private void Update()
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void FixedUpdate()
     {
         transform.position += moveDir * speed * Time.deltaTime;
     }
@@ -22,13 +30,33 @@ public class Projectile : MonoBehaviour
         moveDir = moveDirection;
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Projectile") || collider.gameObject.CompareTag("Enemy")) return;
+    public Vector3 GetMoveDir() { return moveDir; }
 
-        if (collider.gameObject.CompareTag("Player"))
+    public void GotDeflected()
+    {
+        parried = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if ( (collision.gameObject.CompareTag("Projectile") || collision.gameObject.CompareTag("Enemy")) && !parried) return;
+
+        if (collision.gameObject.CompareTag("Player"))
         {
-            collider.gameObject.GetComponentInParent<Player>().TakeDamage(damage);
+            if (collision.gameObject.GetComponentInParent<PlayerMovement>().GetMovementState() == PlayerMovement.MovementState.superarmor)
+            {
+                GotDeflected();
+                SetMoveDir(Vector3.Reflect(GetMoveDir(), collision.GetContact(0).normal));
+                return;
+            }
+            else
+            {
+                collision.gameObject.GetComponentInParent<Player>().TakeDamage(damage);
+            }
+        }
+        else if (parried && collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
         }
 
         Destroy(gameObject);

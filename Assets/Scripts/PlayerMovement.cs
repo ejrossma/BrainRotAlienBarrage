@@ -45,10 +45,12 @@ public class PlayerMovement : MonoBehaviour
     {
         walking,
         dashing,
+        superarmor,
         air
     }
 
     public bool dashing;
+    public bool deflecting;
 
     // Start is called before the first frame update
     void Start()
@@ -116,7 +118,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
-        if (dashing)
+        if (deflecting)
+        {
+            state = MovementState.superarmor;
+            desiredMoveSpeed = 0f;
+        }
+        else if (dashing)
         {
             state = MovementState.dashing;
             desiredMoveSpeed = dashSpeed;
@@ -180,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (state == MovementState.dashing) return;
+        if (state == MovementState.dashing || state == MovementState.superarmor) return;
 
         //calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -241,5 +248,15 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
 
         exitingSlope = false;
+    }
+
+    public MovementState GetMovementState()
+    {
+        return state;
+    }
+
+    public Transform GetOrientation()
+    {
+        return orientation;
     }
 }
