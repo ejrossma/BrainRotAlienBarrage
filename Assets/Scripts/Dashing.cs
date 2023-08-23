@@ -30,7 +30,7 @@ public class Dashing : MonoBehaviour
     [SerializeField] bool resetVel = true;
 
     [Header("Cooldown")]
-    [SerializeField] float dashCooldown;
+    public float dashCooldown;
     float dashCooldownTimer;
 
     [Header("Input")]
@@ -119,5 +119,10 @@ public class Dashing : MonoBehaviour
             direction = forwardT.forward;
 
         return direction.normalized;
+    }
+
+    public float GetDashCooldown()
+    {
+        return dashCooldownTimer;
     }
 }
