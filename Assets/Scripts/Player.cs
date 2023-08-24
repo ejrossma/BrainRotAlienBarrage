@@ -13,15 +13,19 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject currentGun;
     [SerializeField] KeyCode swapGunKey = KeyCode.Q;
 
+    [Header("Powerups")]
+    private List<Powerup.type> activePowerups = new List<Powerup.type>();
+    [SerializeField] bool invulnerable;
+    private float invulnerableActiveTimer;
+    [SerializeField] bool doubleShot;
+    private float doubleShotActiveTimer;
+    [SerializeField] bool superSpeed;
+    private float superSpeedActiveTimer;
+
     [Header("References")]
     [SerializeField] GameObject assaultObj;
     [SerializeField] GameObject shotgunObj;
     [SerializeField] TextMeshProUGUI healthText;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-    }
 
     // Update is called once per frame
     void Update()
@@ -44,6 +48,70 @@ public class Player : MonoBehaviour
                 assaultObj.SetActive(true);
             }
         }
+
+        ManagePowerups();
+    }
+
+    private void ManagePowerups()
+    {
+        foreach (Powerup.type powerup in activePowerups)
+        {
+            if (powerup == Powerup.type.speed)
+            {
+                superSpeedActiveTimer -= Time.deltaTime;
+                if (superSpeedActiveTimer < 0)
+                {
+                    activePowerups.Remove(powerup);
+                    superSpeed = false;
+                }
+                else
+                {
+                    superSpeed = true;
+                }
+            }
+            else if (powerup == Powerup.type.doubleShot)
+            {
+                doubleShotActiveTimer -= Time.deltaTime;
+                if (doubleShotActiveTimer < 0)
+                {
+                    activePowerups.Remove(powerup);
+                    doubleShot = false;
+                }
+                else
+                {
+                    doubleShot = true;
+                }    
+            }
+            else if (powerup == Powerup.type.invulnerable)
+            {
+                invulnerableActiveTimer -= Time.deltaTime;
+                if (invulnerableActiveTimer < 0)
+                {
+                    activePowerups.Remove(powerup);
+                    invulnerable = false;
+                }
+                else
+                {
+                    invulnerable = true;
+                }
+            }
+        }
+    }
+
+    public void ActivatePowerup(Powerup powerup)
+    {
+        if (!activePowerups.Contains(powerup.typeOfPickup))
+        {
+            activePowerups.Add(powerup.typeOfPickup);
+        }
+
+        SetDuration(powerup.typeOfPickup, powerup.powerupDuration);
+    }
+
+    private void SetDuration(Powerup.type type, float duration)
+    {
+        if (type == Powerup.type.speed)
+            superSpeedActiveTimer = duration;
     }
 
     public bool AddAmmo(Pickup.size sizeOfPickup)
