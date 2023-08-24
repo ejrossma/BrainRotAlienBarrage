@@ -46,7 +46,8 @@ public class Projectile : MonoBehaviour
             if (collision.gameObject.GetComponentInParent<PlayerMovement>().GetMovementState() == PlayerMovement.MovementState.superarmor)
             {
                 GotDeflected();
-                SetMoveDir(Vector3.Reflect(GetMoveDir(), collision.GetContact(0).normal));
+                Vector3 temp = Vector3.Reflect(GetMoveDir(), collision.GetContact(0).normal);
+                SetMoveDir(new Vector3(temp.x, GetMoveDir().y, temp.z));
                 return;
             }
             else

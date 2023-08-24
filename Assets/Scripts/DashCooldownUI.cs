@@ -17,6 +17,9 @@ public class DashCooldownUI : MonoBehaviour
     void Update()
     {
         float updatedProgressValue = 1 - dash.GetDashCooldown() / dash.dashCooldown;
+        if (updatedProgressValue > 0.99) progressBar.gameObject.SetActive(false);
+        else progressBar.gameObject.SetActive(true);
+
         progressBar.localScale = new Vector3(updatedProgressValue, 1, 1);
     }
 }

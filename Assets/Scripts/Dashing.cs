@@ -74,7 +74,7 @@ public class Dashing : MonoBehaviour
 
         Vector3 direction = GetDirection(forwardT);
 
-        Vector3 forceToApply = direction * dashForce + orientation.up * dashUpwardForce;
+        Vector3 forceToApply = direction * dashForce * pm.GetMoveSpeedMultiplier() + orientation.up * dashUpwardForce;
 
         if (disableGravity)
             rb.useGravity = false;

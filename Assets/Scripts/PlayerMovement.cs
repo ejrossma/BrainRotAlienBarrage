@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     private float moveSpeed;
+    private float moveSpeedMultiplier;
+    [SerializeField] float superSpeedMultiplier;
     [SerializeField] float walkSpeed;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashSpeedChangeFactor;
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+    Player p;
 
     [SerializeField] MovementState state;
     public enum MovementState
@@ -57,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        p = GetComponent<Player>();
         readyToJump = true;
     }
 
@@ -195,36 +199,39 @@ public class PlayerMovement : MonoBehaviour
         //on slope
         if (OnSlope() && !exitingSlope)
         {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * moveSpeedMultiplier * 20f, ForceMode.Force);
             if (rb.velocity.y > 0)
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
         //on ground
         else if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * moveSpeedMultiplier * 10f, ForceMode.Force);
         //in air
         else if (!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * airMultiplier * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * moveSpeedMultiplier * airMultiplier * 10f, ForceMode.Force);
 
         rb.useGravity = !OnSlope();
     }
 
     private void SpeedControl()
     {
+        if (p.superSpeed) moveSpeedMultiplier = superSpeedMultiplier;
+        else moveSpeedMultiplier = 1f;
+
         //limit speed on slope
         if (OnSlope() && !exitingSlope)
         {
-            if (rb.velocity.magnitude > moveSpeed)
-                rb.velocity = rb.velocity.normalized * moveSpeed;
+            if (rb.velocity.magnitude > moveSpeed * moveSpeedMultiplier)
+                rb.velocity = rb.velocity.normalized * moveSpeed * moveSpeedMultiplier;
         }
         else
         {
             Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
             //limit velocity if needed
-            if (flatVelocity.magnitude > moveSpeed)
+            if (flatVelocity.magnitude > moveSpeed * moveSpeedMultiplier)
             {
-                Vector3 limitVel = flatVelocity.normalized * moveSpeed;
+                Vector3 limitVel = flatVelocity.normalized * moveSpeed * moveSpeedMultiplier;
                 rb.velocity = new Vector3(limitVel.x, rb.velocity.y, limitVel.z);
             }
         }
@@ -249,6 +256,10 @@ public class PlayerMovement : MonoBehaviour
 
         exitingSlope = false;
     }
+
+    public void SetMoveSpeedMultiplier(float mult) { moveSpeedMultiplier = mult; }
+
+    public float GetMoveSpeedMultiplier() { return moveSpeedMultiplier; }
 
     public MovementState GetMovementState()
     {

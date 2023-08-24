@@ -15,11 +15,11 @@ public class Player : MonoBehaviour
 
     [Header("Powerups")]
     private List<Powerup.type> activePowerups = new List<Powerup.type>();
-    [SerializeField] bool invulnerable;
+    public bool invulnerable;
     private float invulnerableActiveTimer;
-    [SerializeField] bool doubleShot;
-    private float doubleShotActiveTimer;
-    [SerializeField] bool superSpeed;
+    public bool doubleTime;
+    private float doubleTimeActiveTimer;
+    public bool superSpeed;
     private float superSpeedActiveTimer;
 
     [Header("References")]
@@ -54,8 +54,13 @@ public class Player : MonoBehaviour
 
     private void ManagePowerups()
     {
-        foreach (Powerup.type powerup in activePowerups)
+        if (activePowerups.Count == 0) return;
+
+        for (int i = activePowerups.Count - 1; i >= 0; i--)
         {
+            Powerup.type powerup = activePowerups[i];
+            Debug.Log(powerup);
+
             if (powerup == Powerup.type.speed)
             {
                 superSpeedActiveTimer -= Time.deltaTime;
@@ -69,17 +74,17 @@ public class Player : MonoBehaviour
                     superSpeed = true;
                 }
             }
-            else if (powerup == Powerup.type.doubleShot)
+            else if (powerup == Powerup.type.doubleTime)
             {
-                doubleShotActiveTimer -= Time.deltaTime;
-                if (doubleShotActiveTimer < 0)
+                doubleTimeActiveTimer -= Time.deltaTime;
+                if (doubleTimeActiveTimer < 0)
                 {
                     activePowerups.Remove(powerup);
-                    doubleShot = false;
+                    doubleTime = false;
                 }
                 else
                 {
-                    doubleShot = true;
+                    doubleTime = true;
                 }    
             }
             else if (powerup == Powerup.type.invulnerable)
@@ -101,9 +106,7 @@ public class Player : MonoBehaviour
     public void ActivatePowerup(Powerup powerup)
     {
         if (!activePowerups.Contains(powerup.typeOfPickup))
-        {
             activePowerups.Add(powerup.typeOfPickup);
-        }
 
         SetDuration(powerup.typeOfPickup, powerup.powerupDuration);
     }
@@ -112,6 +115,10 @@ public class Player : MonoBehaviour
     {
         if (type == Powerup.type.speed)
             superSpeedActiveTimer = duration;
+        else if (type == Powerup.type.invulnerable)
+            invulnerableActiveTimer = duration;
+        else if (type == Powerup.type.doubleTime)
+            doubleTimeActiveTimer = duration;
     }
 
     public bool AddAmmo(Pickup.size sizeOfPickup)
@@ -166,7 +173,8 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        if (!invulnerable)
+            health -= damage;
         if (health < 0)
             Debug.Log("You have died");
     }

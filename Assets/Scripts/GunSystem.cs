@@ -11,10 +11,14 @@ public class GunSystem : MonoBehaviour
     [SerializeField] bool allowButtonHold;
     int bulletsLeft, bulletsShot;
 
+    [Header("Double Time")]
+    private float timeBetweenShootingModifier;
+    [SerializeField] float doubleTimeModifier;
 
     bool shooting, readyToShoot, reloading;
 
-    //Reference
+    [Header("Reference")]
+    [SerializeField] Player p;
     [SerializeField] Camera playerCamera;
     [SerializeField] Transform attackPoint;
     [SerializeField] RaycastHit rayHit;
@@ -35,6 +39,10 @@ public class GunSystem : MonoBehaviour
 
     void Update()
     {
+        if (p.doubleTime)
+            timeBetweenShootingModifier = doubleTimeModifier;
+        else
+            timeBetweenShootingModifier = 1f;
         GatherInputs();
 
         ammoText.SetText("Ammo Remaining: " + amountOfAmmo);
@@ -52,7 +60,8 @@ public class GunSystem : MonoBehaviour
             bulletsShot = bulletsPerShot;
             bulletsLeft = amountOfAmmo * bulletsPerShot;
             Shoot();
-            amountOfAmmo--;
+            if (!p.doubleTime)
+                amountOfAmmo--;
         }
     }
 
@@ -83,7 +92,7 @@ public class GunSystem : MonoBehaviour
 
         bulletsLeft--;
         bulletsShot--;
-        Invoke(nameof(ResetShot), timeBetweenShooting);
+        Invoke(nameof(ResetShot), timeBetweenShooting * timeBetweenShootingModifier);
 
         if (bulletsShot > 0 && bulletsLeft > 0)
             Invoke(nameof(Shoot), timeBetweenShots);

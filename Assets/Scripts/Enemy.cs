@@ -1,22 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Enemy : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] GameObject projectile;
     [SerializeField] GameObject ammoPickup;
+    [SerializeField] GameObject superSpeedPowerup;
+    [SerializeField] GameObject invulnerablePowerup;
+    [SerializeField] GameObject doubleShotPowerup;
     [SerializeField] Transform frontProjectileLaunchSpot;
     [SerializeField] Transform backProjectileLaunchSpot;
     [SerializeField] Transform leftProjectileLaunchSpot;
     [SerializeField] Transform rightProjectileLaunchSpot;
+    [SerializeField] Transform lootSpawnDropSpot;
 
     private Player player;
 
     [Header("Enemy Stats")]
     [SerializeField] float maxHealth;
     [SerializeField] float shotCooldown;
+    [SerializeField, Range(0,1)] float powerupDropRate;
     private float shotCooldownTimer;
 
 
@@ -61,9 +67,28 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health < 0)
         {
-            health = 0;
-            GameObject temp = Instantiate(ammoPickup, transform.position, Quaternion.identity);
-            temp.GetComponent<Pickup>().SetRandomSize();
+            float t = Random.Range(0f, 1f);
+            if (t < powerupDropRate)
+            {
+                float b = Random.Range(0f, 1f);
+                if (b < 0.33f)
+                {
+                    Instantiate(superSpeedPowerup, lootSpawnDropSpot.position, Quaternion.identity);
+                }   
+                else if (b < 0.66f)
+                {
+                    Instantiate(invulnerablePowerup, lootSpawnDropSpot.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(doubleShotPowerup, lootSpawnDropSpot.position, Quaternion.identity);
+                }
+            }
+            else
+            {
+                GameObject temp = Instantiate(ammoPickup, lootSpawnDropSpot.position, Quaternion.identity);
+                temp.GetComponent<Pickup>().SetRandomSize();
+            }
             Destroy(gameObject);
         }  
     }
