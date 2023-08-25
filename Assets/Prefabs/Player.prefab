@@ -431,7 +431,7 @@ MonoBehaviour:
   amountOfAmmo: 10
   maxAmmo: 15
   bulletsPerShot: 6
-  allowButtonHold: 1
+  allowButtonHold: 0
   doubleTimeModifier: 0.5
   p: {fileID: 3369482210212475005}
   playerCamera: {fileID: 354182258}

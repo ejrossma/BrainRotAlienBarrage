@@ -7,12 +7,6 @@ public class DashCooldownUI : MonoBehaviour
     [SerializeField] Dashing dash;
     [SerializeField] RectTransform progressBar;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

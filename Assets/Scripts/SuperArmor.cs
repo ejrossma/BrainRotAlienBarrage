@@ -12,7 +12,7 @@ public class SuperArmor : MonoBehaviour
 
     [Header("Super Armor Settings")]
     [SerializeField] float superArmorDuration;
-    [SerializeField] float superArmorCooldown;
+    public float superArmorCooldown;
     [SerializeField] LayerMask superArmorLayers;
 
     private float superArmorCooldownTimer;
@@ -61,4 +61,6 @@ public class SuperArmor : MonoBehaviour
         superArmorCollider.SetActive(false);
         cc.DoFov(85);
     }
+
+    public float GetSuperArmorCooldown() {  return superArmorCooldownTimer; }
 }
