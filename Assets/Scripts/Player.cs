@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     [Header("Player Stats")]
     [SerializeField] float maxHealth;
-    [SerializeField] float health;
+    private float health;
 
     [Header("Player Information")]
     [SerializeField] GameObject currentGun;
@@ -30,14 +30,19 @@ public class Player : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject assaultObj;
     [SerializeField] GameObject shotgunObj;
-    [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] RectTransform healthAmount;
     [SerializeField] Image currentCrosshair;
 
+
+    private void Awake()
+    {
+        health = maxHealth;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        healthText.SetText("Health: " + health);
+        healthAmount.localScale = new Vector3(health / maxHealth, healthAmount.localScale.y, healthAmount.localScale.z);
 
         if (Input.GetKeyDown(swapGunKey))
         {
@@ -167,7 +172,7 @@ public class Player : MonoBehaviour
         }
         else if (sizeOfPickup == Pickup.size.medium)
         {
-            health += 100;
+            health += 50;
             if (health > maxHealth) health = maxHealth;
         }
         else if (sizeOfPickup == Pickup.size.full)
@@ -184,6 +189,10 @@ public class Player : MonoBehaviour
         if (!invulnerable && GetComponent<PlayerMovement>().GetMovementState() != PlayerMovement.MovementState.superarmor)
             health -= damage;
         if (health < 0)
+        {
             Debug.Log("You have died");
+            health = 0;
+        }
+            
     }
 }

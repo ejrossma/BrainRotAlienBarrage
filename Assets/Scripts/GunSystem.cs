@@ -45,7 +45,7 @@ public class GunSystem : MonoBehaviour
             timeBetweenShootingModifier = 1f;
         GatherInputs();
 
-        ammoText.SetText("Ammo Remaining: " + amountOfAmmo);
+        ammoText.SetText("" + amountOfAmmo);
     }
 
     private void GatherInputs()
