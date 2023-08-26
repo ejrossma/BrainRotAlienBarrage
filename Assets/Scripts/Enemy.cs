@@ -5,61 +5,22 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy Stats")]
+    [SerializeField] float startingHealth;
+    private float health;
+    [Range(0,1)] public float powerupDropRate;
+    
+
     [Header("References")]
-    [SerializeField] GameObject projectile;
     [SerializeField] GameObject ammoPickup;
     [SerializeField] GameObject superSpeedPowerup;
     [SerializeField] GameObject invulnerablePowerup;
     [SerializeField] GameObject doubleShotPowerup;
-    [SerializeField] Transform frontProjectileLaunchSpot;
-    [SerializeField] Transform backProjectileLaunchSpot;
-    [SerializeField] Transform leftProjectileLaunchSpot;
-    [SerializeField] Transform rightProjectileLaunchSpot;
     [SerializeField] Transform lootSpawnDropSpot;
-
-    private Player player;
-
-    [Header("Enemy Stats")]
-    [SerializeField] float maxHealth;
-    [SerializeField] float shotCooldown;
-    [SerializeField, Range(0,1)] float powerupDropRate;
-    private float shotCooldownTimer;
-
-
-    [Header("Enemy Information")]
-    private float health;
 
     private void Awake()
     {
-        player = GetComponent<Player>();
-        health = maxHealth;
-        shotCooldownTimer = 0;
-    }
-
-    private void Update()
-    {
-        shotCooldownTimer += Time.deltaTime;
-        if (shotCooldownTimer > shotCooldown)
-        {
-            shotCooldownTimer = 0;
-            ShootProjectiles();
-        }
-    }
-
-    private void ShootProjectiles()
-    {
-        GameObject temp;
-        temp = Instantiate(projectile, frontProjectileLaunchSpot.position, Quaternion.identity);
-        temp.GetComponent<Projectile>().SetMoveDir(transform.forward);
-
-        temp = Instantiate(projectile, backProjectileLaunchSpot.position, Quaternion.identity);
-        temp.GetComponent<Projectile>().SetMoveDir(-transform.forward);
-
-        temp = Instantiate(projectile, rightProjectileLaunchSpot.position, Quaternion.identity);
-        temp.GetComponent<Projectile>().SetMoveDir(transform.right);
-
-        temp = Instantiate(projectile, leftProjectileLaunchSpot.position, Quaternion.identity);
-        temp.GetComponent<Projectile>().SetMoveDir(-transform.right);
+        health = startingHealth;
     }
 
     public void TakeDamage(float damage)
@@ -74,7 +35,7 @@ public class Enemy : MonoBehaviour
                 if (b < 0.33f)
                 {
                     Instantiate(superSpeedPowerup, lootSpawnDropSpot.position, Quaternion.identity);
-                }   
+                }
                 else if (b < 0.66f)
                 {
                     Instantiate(invulnerablePowerup, lootSpawnDropSpot.position, Quaternion.identity);
@@ -90,6 +51,6 @@ public class Enemy : MonoBehaviour
                 temp.GetComponent<Pickup>().SetRandomSize();
             }
             Destroy(gameObject);
-        }  
+        }
     }
 }

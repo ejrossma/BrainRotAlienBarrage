@@ -55,7 +55,7 @@ public class GunSystem : MonoBehaviour
         else
             shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        if (readyToShoot && shooting && amountOfAmmo > 0)
+        if (readyToShoot && shooting && (amountOfAmmo > 0 || p.doubleTime) )
         {
             bulletsShot = bulletsPerShot;
             bulletsLeft = amountOfAmmo * bulletsPerShot;
@@ -80,7 +80,7 @@ public class GunSystem : MonoBehaviour
         if (Physics.Raycast(playerCamera.transform.position, direction, out rayHit, range, enemyLayers))
         {
             if (rayHit.collider.CompareTag("Enemy"))
-                rayHit.collider.GetComponent<Enemy>().TakeDamage(damage);
+                rayHit.collider.GetComponentInParent<Enemy>().TakeDamage(damage);
         }
 
         //Shake camera

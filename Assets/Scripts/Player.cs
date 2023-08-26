@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -22,10 +23,16 @@ public class Player : MonoBehaviour
     public bool superSpeed;
     private float superSpeedActiveTimer;
 
+    [Header("Crosshairs")]
+    [SerializeField] Sprite assaultCrosshair;
+    [SerializeField] Sprite shotgunCrosshair;
+
     [Header("References")]
     [SerializeField] GameObject assaultObj;
     [SerializeField] GameObject shotgunObj;
     [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] Image currentCrosshair;
+
 
     // Update is called once per frame
     void Update()
@@ -40,12 +47,14 @@ public class Player : MonoBehaviour
                 currentGun = shotgunObj;
                 assaultObj.SetActive(false);
                 shotgunObj.SetActive(true);
+                currentCrosshair.sprite = shotgunCrosshair;
             }
             else
             {
                 currentGun = assaultObj;
                 shotgunObj.SetActive(false);
                 assaultObj.SetActive(true);
+                currentCrosshair.sprite = assaultCrosshair;
             }
         }
 
@@ -59,7 +68,6 @@ public class Player : MonoBehaviour
         for (int i = activePowerups.Count - 1; i >= 0; i--)
         {
             Powerup.type powerup = activePowerups[i];
-            Debug.Log(powerup);
 
             if (powerup == Powerup.type.speed)
             {
@@ -173,7 +181,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (!invulnerable)
+        if (!invulnerable && GetComponent<PlayerMovement>().GetMovementState() != PlayerMovement.MovementState.superarmor)
             health -= damage;
         if (health < 0)
             Debug.Log("You have died");

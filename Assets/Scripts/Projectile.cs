@@ -47,7 +47,9 @@ public class Projectile : MonoBehaviour
             {
                 GotDeflected();
                 Vector3 temp = Vector3.Reflect(GetMoveDir(), collision.GetContact(0).normal);
-                SetMoveDir(new Vector3(temp.x, GetMoveDir().y, temp.z));
+                Vector3 final = (collision.gameObject.GetComponentInParent<PlayerMovement>().GetOrientation().forward + temp) / 2;
+
+                SetMoveDir(new Vector3(final.x, 0, final.z));
                 return;
             }
             else
