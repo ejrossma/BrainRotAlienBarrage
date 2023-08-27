@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -81,6 +80,11 @@ public class Walker : MonoBehaviour
     public void SetTriggeredToFight(bool triggered)
     {
         triggeredToFight = triggered;
+    }
+
+    public void SetStationary()
+    {
+        stationary = true;
     }
 
     private void OnDrawGizmosSelected()

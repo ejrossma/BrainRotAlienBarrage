@@ -7,7 +7,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("TestScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("Overworld", LoadSceneMode.Single);
     }
 
     public void Quit()

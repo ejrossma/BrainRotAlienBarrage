@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98d2c66cc27fe44c912529dd234a8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeOfPickup: 0
+  sizeOfPickup: 2
   typeOfPickup: 1
 --- !u!114 &7070446315590499633
 MonoBehaviour:

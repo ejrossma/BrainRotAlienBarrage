@@ -75,6 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   player: {fileID: 0}
+  animator: {fileID: 820818390888489202}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -85,6 +86,9 @@ MonoBehaviour:
   timeBetweenAttacks: 3
   attackRange: 10
   playerInAttackRange: 0
+  jumpSpeed: 0
+  depletionCoefficient: 0
+  jumpDamage: 0
 --- !u!136 &3429091625992314274
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -953,6 +957,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5ff2a924c703fd949a28ee443d488309, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1495bacdec54a2f439c904aa72cbc8d6, type: 3}
+--- !u!95 &820818390888489202 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: 1495bacdec54a2f439c904aa72cbc8d6,
+    type: 3}
+  m_PrefabInstance: {fileID: 820818390897972626}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &820818390897839888 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 1495bacdec54a2f439c904aa72cbc8d6,

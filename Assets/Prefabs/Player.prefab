@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8a30f0356cb534cb5f0d35a6b05931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 12
+  damage: 25
   timeBetweenShooting: 0.1
   spread: 0.03
   range: 100
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8a30f0356cb534cb5f0d35a6b05931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 20
   timeBetweenShooting: 0.75
   spread: 0.12
   range: 50
@@ -493,8 +493,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10
-  m_Range: 100
+  m_Intensity: 100
+  m_Range: 250
   m_SpotAngle: 78.34799
   m_InnerSpotAngle: 45.413887
   m_CookieSize: 10
@@ -573,7 +573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5849069823487551124}
   - component: {fileID: 1780724609974773866}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player Object
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 3369482210212475005}
   - component: {fileID: 1495553754}
   - component: {fileID: 44188451806759009}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -769,19 +769,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206db732464d3d44c8233574f5c7baa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 300
   currentGun: {fileID: 1519269546}
   swapGunKey: 113
   hasControl: 0
   invulnerable: 0
   doubleTime: 0
   superSpeed: 0
-  assaultCrosshair: {fileID: 0}
-  shotgunCrosshair: {fileID: 0}
+  assaultCrosshair: {fileID: 21300000, guid: ac37bcac01bfcac45a1c15e0488c718b, type: 3}
+  shotgunCrosshair: {fileID: 21300000, guid: a477911a9b5fdc24bb45173db58b06ec, type: 3}
   assaultObj: {fileID: 624898545}
   shotgunObj: {fileID: 1519269546}
   healthAmount: {fileID: 0}
   currentCrosshair: {fileID: 0}
+  gm: {fileID: 0}
 --- !u!114 &1495553754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,7 +872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7169908330595360216}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}

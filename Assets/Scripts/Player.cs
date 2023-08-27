@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
 
         int ammoMult = 1;
         if (currentGun == assaultObj)
-            ammoMult = 5;
+            ammoMult = 10;
 
         if (sizeOfPickup == Pickup.size.small)
         {
