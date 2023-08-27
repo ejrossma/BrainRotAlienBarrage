@@ -67,15 +67,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GroundCheck();
-        GatherInput();
-        SpeedControl();
-        StateHandler();
+        if (p.hasControl)
+        {
+            GroundCheck();
+            GatherInput();
+            SpeedControl();
+            StateHandler();
+        }
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (p.hasControl)
+            MovePlayer();
     }
 
     private void GroundCheck()

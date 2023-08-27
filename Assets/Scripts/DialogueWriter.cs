@@ -41,7 +41,7 @@ public class DialogueWriter : MonoBehaviour
                 waitTimeTimer = 0;
                 if (currentIndex == lines.Length)
                 {
-                    gameObject.SetActive(false);
+                    GameObject.Find("GameManager").GetComponent<GameManager>().FinishIntro();
                     return;
                 }
                 StartCoroutine("TypeDialogue");

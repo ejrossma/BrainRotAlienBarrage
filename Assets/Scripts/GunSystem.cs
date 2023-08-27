@@ -50,18 +50,21 @@ public class GunSystem : MonoBehaviour
 
     private void GatherInputs()
     {
-        if (allowButtonHold)
-            shooting = Input.GetKey(KeyCode.Mouse0);
-        else
-            shooting = Input.GetKeyDown(KeyCode.Mouse0);
-
-        if (readyToShoot && shooting && (amountOfAmmo > 0 || p.doubleTime) )
+        if (p.hasControl)
         {
-            bulletsShot = bulletsPerShot;
-            bulletsLeft = amountOfAmmo * bulletsPerShot;
-            Shoot();
-            if (!p.doubleTime)
-                amountOfAmmo--;
+            if (allowButtonHold)
+                shooting = Input.GetKey(KeyCode.Mouse0);
+            else
+                shooting = Input.GetKeyDown(KeyCode.Mouse0);
+
+            if (readyToShoot && shooting && (amountOfAmmo > 0 || p.doubleTime))
+            {
+                bulletsShot = bulletsPerShot;
+                bulletsLeft = amountOfAmmo * bulletsPerShot;
+                Shoot();
+                if (!p.doubleTime)
+                    amountOfAmmo--;
+            }
         }
     }
 

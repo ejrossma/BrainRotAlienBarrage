@@ -32,14 +32,17 @@ public class SuperArmor : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(superArmorKey))
+        if (GameObject.Find("Player").GetComponent<Player>().hasControl)
         {
-            SuperArmorActivate();
-        }
+            if (Input.GetKeyDown(superArmorKey))
+            {
+                SuperArmorActivate();
+            }
 
-        if (superArmorCooldownTimer > 0)
-        {
-            superArmorCooldownTimer -= Time.deltaTime;
+            if (superArmorCooldownTimer > 0)
+            {
+                superArmorCooldownTimer -= Time.deltaTime;
+            }
         }
     }
 

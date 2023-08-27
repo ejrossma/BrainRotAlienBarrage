@@ -46,13 +46,16 @@ public class Dashing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(dashKey)) 
+        if (GameObject.Find("Player").GetComponent<Player>().hasControl)
         {
-            Dash();
-        }
+            if (Input.GetKeyDown(dashKey))
+            {
+                Dash();
+            }
 
-        if (dashCooldownTimer > 0)
-            dashCooldownTimer -= Time.deltaTime;
+            if (dashCooldownTimer > 0)
+                dashCooldownTimer -= Time.deltaTime;
+        }
     }
 
     private void Dash()

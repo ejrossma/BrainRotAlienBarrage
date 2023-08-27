@@ -1,0 +1,44 @@
+# Blender MTL File: 'shotgun_LOD_01.blend'
+# Material Count: 3
+
+newmtl mat_shotgun_pt_01
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_01_Normal.png
+map_Kd E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_01_BaseColor.png
+map_Ns E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_01_Roughness.png
+refl E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_01_Metallic.png
+
+newmtl mat_shotgun_pt_02
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_02_Normal.png
+map_Kd E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_02_BaseColor.png
+map_Ns E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_02_Roughness.png
+refl E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_02_Metallic.png
+
+newmtl mat_shotgun_pt_03
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_03_Normal.png
+map_Kd E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_03_BaseColor.png
+map_Ns E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_03_Roughness.png
+refl E:\\Dropbox\\_GAME ASSETS\\shotgun_4927461\\TEXTURES\\BLENDER\\4096\\mat_shotgun_pt_03_Metallic.png

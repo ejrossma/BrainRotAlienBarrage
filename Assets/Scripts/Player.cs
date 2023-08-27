@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [Header("Player Information")]
     [SerializeField] GameObject currentGun;
     [SerializeField] KeyCode swapGunKey = KeyCode.Q;
+    public bool hasControl;
 
     [Header("Powerups")]
     private List<Powerup.type> activePowerups = new List<Powerup.type>();
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
     {
         healthAmount.localScale = new Vector3(health / maxHealth, healthAmount.localScale.y, healthAmount.localScale.z);
 
-        if (Input.GetKeyDown(swapGunKey))
+        if (Input.GetKeyDown(swapGunKey) && hasControl)
         {
             //check which gun is current
             if (currentGun == assaultObj)
