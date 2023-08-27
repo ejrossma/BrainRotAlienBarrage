@@ -13,13 +13,6 @@ public class Projectile : MonoBehaviour
     private Vector3 moveDir;
     private bool parried;
 
-    private Rigidbody rb;
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-
     private void FixedUpdate()
     {
         transform.position += moveDir * speed * Time.deltaTime;

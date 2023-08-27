@@ -17,10 +17,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject invulnerablePowerup;
     [SerializeField] GameObject doubleShotPowerup;
     [SerializeField] Transform lootSpawnDropSpot;
+    private GameManager gm;
 
     private void Awake()
     {
         health = startingHealth;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void TakeDamage(float damage)
@@ -50,7 +52,13 @@ public class Enemy : MonoBehaviour
                 GameObject temp = Instantiate(ammoPickup, lootSpawnDropSpot.position, Quaternion.identity);
                 temp.GetComponent<Pickup>().SetRandomSize();
             }
+
             Destroy(gameObject);
         }
+    }
+
+    private void ResetEnemy()
+    {
+        health = startingHealth;
     }
 }

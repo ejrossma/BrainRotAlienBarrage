@@ -63,8 +63,9 @@ public class Walker : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Attack Code
-            Rigidbody rb = Instantiate(attackProjectile, launchProjectileSpot.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 28f, ForceMode.Impulse);
+            GameObject tmp = Instantiate(attackProjectile, launchProjectileSpot.position, Quaternion.identity);
+            Rigidbody rb = tmp.GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 25f, ForceMode.Impulse);
             rb.AddForce(transform.up * 1.5f, ForceMode.Impulse);
 
             alreadyAttacked = true;

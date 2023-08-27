@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject shotgunObj;
     [SerializeField] RectTransform healthAmount;
     [SerializeField] Image currentCrosshair;
+    [SerializeField] GameManager gm;
 
 
     private void Awake()
@@ -189,9 +190,9 @@ public class Player : MonoBehaviour
     {
         if (!invulnerable && GetComponent<PlayerMovement>().GetMovementState() != PlayerMovement.MovementState.superarmor)
             health -= damage;
-        if (health < 0)
+        if (health <= 0)
         {
-            Debug.Log("You have died");
+            gm.Lose();
             health = 0;
         }
             

@@ -37,6 +37,7 @@ public class StationaryTurret : MonoBehaviour
     private void ShootProjectiles()
     {
         GameObject temp;
+
         temp = Instantiate(projectile, frontProjectileLaunchSpot.position, Quaternion.identity);
         temp.GetComponent<Projectile>().SetMoveDir(transform.forward);
 

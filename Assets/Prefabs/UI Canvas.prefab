@@ -544,7 +544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &611914643351920940
 RectTransform:
   m_ObjectHideFlags: 0
@@ -582,13 +582,31 @@ MonoBehaviour:
   - Greetings, Super Soldier. Your boots have just made contact with the unforgiving
     terrain of Crystallara.
   - Despite its nice name, Crystallara is a treacherous hellscape inhabited by aliens
-    that fuck with your mind.
+    that will be utilizing dark energy to destroy you.
   - "Your mission is to find and kill their leader, but don\u2019t expect it to be
-    that easy. Your senses will be manipulated in more ways than one as you mow your
-    way through those sons of bitches."
+    that easy."
+  - 'You will be tested in more ways than one as you mow your way through those sons
+    of bitches. '
+  - 'You want to know why it looks like I am on vacation during such an important
+    mission? '
+  - 'That is none of your damn business Soldier, and I can assure you that you have
+    at least two thirds of my attention during this briefing. '
+  - 'Now back to what I was saying. Remember all the things you have learned during
+    your training. '
+  - WASD to MOVE
+  - Left Mouse Button to SHOOT
+  - Q to SWAP WEAPONS
+  - 'Most Importantly though, you are geared with the latest and greatest combat
+    technology mankind has to offer. '
+  - Use LEFT SHIFT to DASH, giving you a boost of speed in whichever direction you
+    are moving.
+  - RIGHT MOUSE BUTTON to SUPER ARMOR, preventing you from taking any damage and
+    deflecting all projectiles.
+  - 'You have trained endlessly for this moment, realize your potential and become
+    the bastion of humanity we know you can be. Good Luck Soldier! '
   startDialogue: 0
-  typeSpeed: 0.05
-  waitTimeBetweenDialogue: 0.5
+  typeSpeed: 0.033
+  waitTimeBetweenDialogue: 1.5
   outputText: {fileID: 5145127442230171135}
 --- !u!1 &1691136628379042679
 GameObject:

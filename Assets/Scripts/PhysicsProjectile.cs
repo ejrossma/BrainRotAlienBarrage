@@ -33,7 +33,7 @@ public class PhysicsProjectile : MonoBehaviour
             {
                 GotDeflected();
                 rb.velocity = Vector3.Reflect(rb.velocity, collision.GetContact(0).normal);
-                rb.AddForce(-transform.forward * 24f, ForceMode.Impulse);
+                rb.AddForce(-transform.forward * 28f, ForceMode.Impulse);
                 rb.AddForce(transform.up * 3f, ForceMode.Impulse);
                 return;
             }

@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Opening Sequence")]
+    [Header("References")]
     [SerializeField] GameObject dialogueInterface;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject playerHUD;
+    [SerializeField] GameObject loseScreen;
+    [SerializeField] bool skipDialogue;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartDialogue();
-        player.GetComponent<Player>().hasControl = false;
+        if (!skipDialogue)
+        {
+            StartDialogue();
+            player.GetComponent<Player>().hasControl = false;
+        }
+        else
+        {
+            FinishIntro();
+        }
     }
 
     private void StartDialogue()
@@ -26,5 +36,14 @@ public class GameManager : MonoBehaviour
     {
         dialogueInterface.SetActive(false);
         player.GetComponent<Player>().hasControl = true;
+    }
+
+    public void Lose()
+    {
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        loseScreen.SetActive(true);
+        playerHUD.SetActive(false);
     }
 }
